@@ -16,6 +16,7 @@ class PostItem extends Component {
                 fetch(`${boastAPI}${this.props.id}/upvotes/`)
                   .then(res => res.json())
                   .then(data => {});
+                  window.location.reload()
               }}
             >hell yeah</button>
             {this.props.total}
@@ -24,7 +25,8 @@ class PostItem extends Component {
               onClick={() => {
                 fetch(`${boastAPI}${this.props.id}/downvotes/`)
                   .then(res => res.json())
-                  .then(data => {});
+                    .then(data => { });
+                    window.location.reload()
               }}
             >Hell Nah</button>
             <br />

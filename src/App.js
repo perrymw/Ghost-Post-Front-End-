@@ -24,6 +24,7 @@ class App extends Component {
     e.preventDefault();
     let content = e.target.children[3].value;
     let boast = e.target.children[1].checked;
+    console.log(content, boast)
     this.boast = boast;
     this.content = content;
     this.NewPost()
@@ -41,6 +42,7 @@ class App extends Component {
       .then(data => {
         this.setState({ posts: data });
       });
+
   }
   componentDidMount() {
     this.getPosts();
