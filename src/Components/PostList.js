@@ -11,6 +11,8 @@ class PostList extends Component {
               id={post.id}
               boast={post.boast}
               content={post.content}
+              upvote={post.upvote}
+              downvote={post.downvote}
               total={post.total}
               date={post.date}
             />

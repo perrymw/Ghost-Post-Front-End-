@@ -29,24 +29,57 @@ class App extends Component {
     this.content = content;
     this.NewPost()
   };
+  NewPost = () => {
+    let payload = {
+      boast: this.boast,
+      content: this.content
+    };
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    };
+    fetch(boastAPI, options)
+    .then(res => res.json())
+    .then(data => {
+      this.getPosts();
+      console.log(data)
+    });
+  };
   upVote = e => {
-    fetch(`${boastAPI}upvotes/`)
-      .then(res => res.json())
+    let payload = {
+      upvote: this.upvote
+    };
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    };
+    fetch(`${boastAPI}upvotes/`, options)
+    .then(res => res.json())
       .then(data => {
         this.setState({ posts: data });
       });
-  }
+    }
   downVote = e => {
-    fetch(`${boastAPI}downvotes/`)
+    let payload = {
+      downvote: this.downvote
+    };
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    };
+      fetch(`${boastAPI}downvotes/`, options)
       .then(res => res.json())
       .then(data => {
         this.setState({ posts: data });
       });
-
-  }
+      
+    }
   componentDidMount() {
-    this.getPosts();
-  }
+      this.getPosts();
+    }
   BoastsOnly = () => {
     fetch(`${boastAPI}boasts_only/`)
       .then(res => res.json())
@@ -73,23 +106,6 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ posts: data });
-      });
-  };
-  NewPost = () => {
-    let payload = {
-      boast: this.boast,
-      content: this.content
-    };
-    let options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    };
-    fetch(boastAPI, options)
-      .then(res => res.json())
-      .then(data => {
-        this.getPosts();
-        console.log(data)
       });
   };
   render() {
